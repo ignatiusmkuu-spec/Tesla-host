@@ -1,0 +1,12 @@
+# TODO
+
+- [x] **Create the Tesla Host site and in-site bot deploy flow.** The responsive setup console provides WhatsApp pairing, supported Tesla-bot settings, a memory-only draft handoff, protected admin review, and one in-site Heroku App Setups path for Tesla-bot and other compatible public GitHub repositories.
+- [x] **Let an admin add other bots using a pairing session and GitHub repository.** Inspect the public repo's root `app.json`, pin review and deployment to one commit, show supported settings/resources, and never share Tesla Host's Heroku API key with a bot.
+- [x] **Protect admin and WhatsApp credentials.** Use `HEROKU_API_KEY` and `TESLA_HOST_ADMIN_PASSWORD` only on the server; require admin authentication; keep sessions out of URLs, browser storage, logs, and requests before final submission.
+- [x] **Show the requested support contact.** Provide clickable WhatsApp and phone links for `+254 706 535 581`.
+- [x] **Keep paid bot provisioning explicit.** Display declared add-ons and estimate charges before an admin acknowledges the resource setup. Tesla-bot's Essential-0 database is listed at US$5/month and its continuously running Basic dyno at up to US$7/month, roughly US$12/month per bot before tax or other costs.
+- [x] **Change the Tesla Host website target to Vercel while leaving bots on Heroku.** The website is not to be deployed to Heroku under the previous pending cost approval.
+- [x] **Adapt the existing protected admin API to Vercel Functions.** Serve static files from `public/`; route `/api/admin/*` through the root `api/admin.js` Node Function; preserve the existing Heroku deployment safety rules and local/Heroku development path.
+- [ ] **Push the project to GitHub.** The bound project currently uses a Manus-managed repository, not a connected GitHub repository. Use the owner-confirmed new-private-repository flow; do not overwrite the existing README-only `Tesla-host` repository or the supplied `Tesla-bot` repository.
+- [ ] **Authorize Vercel access and production secrets.** The Vercel connector authorization prompt was not accepted. To deploy, the user must authorize Vercel through an available account connection. The production site needs `HEROKU_API_KEY` and `TESLA_HOST_ADMIN_PASSWORD` as Vercel Secret environment variables; transfer them only with explicit authorization.
+- [ ] **Deploy and verify Tesla Host on Vercel.** The Vercel account/project is not connected yet and no deployment has been made. Use the provider's assigned domain unless the user supplies a custom domain; do not assume plan/cost.

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111d" />
+    <meta name="description" content="Pair WhatsApp, configure your bot, and deploy inside Tesla Host with protected Heroku controls." />
+    <title>Tesla Host — Bot setup console</title>
+    <link rel="icon" type="image/svg+xml" href="/tesla-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+    <script src="/admin.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to setup</a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Tesla Host home">
+          <img class="brand-mark" src="/tesla-mark.svg" alt="" />
+          <span class="brand-name">TESLA<span>HOST</span></span>
+          <span class="brand-tag">BOT CONTROL</span>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+        <nav class="side-nav">
+          <a class="nav-link active" href="#overview"><span class="nav-icon grid-icon" aria-hidden="true"></span><span>Overview</span><span class="nav-dot"></span></a>
+          <a class="nav-link" href="#pairing"><span class="nav-icon link-icon" aria-hidden="true"></span><span>WhatsApp pairing</span></a>
+          <a class="nav-link" href="#configuration"><span class="nav-icon sliders-icon" aria-hidden="true"></span><span>Bot configuration</span></a>
+          <a class="nav-link" href="#deployment"><span class="nav-icon rocket-icon" aria-hidden="true"></span><span>Deployment</span></a>
+          <a class="nav-link" href="#admin"><span class="nav-icon sliders-icon" aria-hidden="true"></span><span>Admin control panel</span><span class="admin-nav-mark">LOCKED</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="secure-note">
+            <span class="secure-lock" aria-hidden="true">⌑</span>
+            <div><strong>Protected admin access</strong><p>Heroku credentials stay on the server. Sessions are never logged or saved by Tesla Host.</p></div>
+          </div>
+          <a class="repo-link" href="https://github.com/ignatiusmkuu-spec/Tesla-bot" target="_blank" rel="noopener noreferrer">
+            <span class="repo-mark" aria-hidden="true">GH</span><span>View bot repository</span><span class="external-arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="sidebar-version"><span class="pulse-dot"></span> TESLA-MD · NODE 22+</div>
+        </div>
+      </aside>
+
+      <main id="main" class="main-content">
+        <header id="top" class="topbar">
+          <div class="breadcrumb"><span>TESLA HOST</span><span class="crumb-slash">/</span><span>BOT SETUP</span></div>
+          <div class="topbar-right"><span class="source-chip"><span class="pulse-dot"></span> IN-SITE DEPLOY</span><a class="topbar-help" href="https://wa.me/254706535581" target="_blank" rel="noopener noreferrer">WhatsApp help · +254 706 535 581 <span aria-hidden="true">↗</span></a></div>
+        </header>
+
+        <div class="page-wrap">
+          <section id="overview" class="hero-section" aria-labelledby="page-title">
+            <div class="hero-copy">
+              <div class="eyebrow"><span class="eyebrow-line"></span> DEPLOYMENT WORKSPACE <span class="eyebrow-index">01—03</span></div>
+              <h1 id="page-title">Your bot.<br /><span>Your rules.</span></h1>
+              <p class="hero-description">Pair WhatsApp, set your bot preferences, then deploy it inside Tesla Host. Every bot launch is reviewed in the protected workspace before it reaches your Heroku account.</p>
+              <div class="hero-meta"><span class="meta-item"><span class="meta-symbol">⌘</span> Tesla-MD</span><span class="meta-divider"></span><span class="meta-item mono">ignatiusmkuu-spec / Tesla-bot</span></div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+              <div class="orbital orbital-one"></div><div class="orbital orbital-two"></div><div class="orbital orbital-three"></div>
+              <div class="visual-cross cross-a"></div><div class="visual-cross cross-b"></div>
+              <div class="visual-core"><img src="/tesla-mark.svg" alt="" /><span>HOST<br />NODE</span></div>
+              <div class="visual-coordinate coord-a">WA / LINK</div><div class="visual-coordinate coord-b">HEROKU / READY</div>
+              <div class="visual-dot dot-a"></div><div class="visual-dot dot-b"></div><div class="visual-dot dot-c"></div>
+            </div>
+          </section>
+
+          <section class="progress-panel" aria-label="Setup progress">
+            <div class="progress-heading"><span>SETUP SEQUENCE</span><span class="progress-caption"><span class="pulse-dot"></span> CONFIGURATION IN PROGRESS</span></div>
+            <div class="progress-track">
+              <a class="progress-step" href="#pairing" data-step="pairing"><span class="step-number">01</span><span class="step-copy"><strong>Pair WhatsApp</strong><small>Generate your session</small></span><span class="step-state" id="pairingState">NEXT</span></a>
+              <span class="track-line"></span>
+              <a class="progress-step" href="#configuration" data-step="configuration"><span class="step-number">02</span><span class="step-copy"><strong>Configure bot</strong><small>Set your preferences</small></span><span class="step-state" id="configState">WAITING</span></a>
+              <span class="track-line"></span>
+              <a class="progress-step" href="#deployment" data-step="deployment"><span class="step-number">03</span><span class="step-copy"><strong>Deploy in Tesla Host</strong><small>Admin review, then launch</small></span><span class="step-state" id="deployState">WAITING</span></a>
+            </div>
+          </section>
+
+          <div class="workspace-grid">
+            <div class="setup-column">
+              <section id="pairing" class="panel setup-panel" aria-labelledby="pairing-title">
+                <div class="panel-heading">
+                  <div class="panel-title-group"><div class="panel-number">01</div><div><div class="section-kicker">WHATSAPP CONNECTION</div><h2 id="pairing-title">Pair your number</h2></div></div>
+                  <span class="panel-tag">REQUIRED</span>
+                </div>
+                <p class="panel-intro">Use the Tesla-MD session site to link your WhatsApp account. When you receive the session value, return here and paste it into the secure field below.</p>
+                <div class="pair-options">
+                  <a class="pair-card" href="https://pair-tesla-md.onrender.com/pair" target="_blank" rel="noopener noreferrer" data-pair-link>
+                    <span class="pair-card-icon phone-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.75" width="11" height="18.5" rx="2.2"></rect><path d="M10 5.5h4M11 18.5h2"></path></svg></span>
+                    <span class="pair-card-copy"><strong>Pair with phone code</strong><span>Recommended · use your main phone</span></span><span class="pair-card-arrow" aria-hidden="true">↗</span>
+                  </a>
+                  <a class="pair-card" href="https://pair-tesla-md.onrender.com/qr" target="_blank" rel="noopener noreferrer" data-pair-link>
+                    <span class="pair-card-icon qr-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 3.5h6v6h-6zM14.5 3.5h6v6h-6zM3.5 14.5h6v6h-6zM14.5 14.5h2v2h-2zM18.5 14.5h2v2h-2zM14.5 18.5h2v2h-2zM18.5 18.5h2v2h-2z"></path></svg></span>
+                    <span class="pair-card-copy"><strong>Pair with QR code</strong><span>Scan from WhatsApp linked devices</span></span><span class="pair-card-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="security-callout">
+                  <span class="callout-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5.5c0 4.8-3.2 7.8-8 9.5-4.8-1.7-8-4.7-8-9.5V6l8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                  <div><strong>Your session can access your WhatsApp account.</strong><span>It stays in this tab until an authorized admin submits the final deployment. Then it is sent over HTTPS to Tesla Host and forwarded only to the selected Heroku app. It is never placed in a URL, saved, or logged.</span></div>
+                </div>
+              </section>
+
+              <section id="configuration" class="panel setup-panel" aria-labelledby="config-title">
+                <div class="panel-heading">
+                  <div class="panel-title-group"><div class="panel-number">02</div><div><div class="section-kicker">BOT PREFERENCES</div><h2 id="config-title">Configure Tesla-MD</h2></div></div>
+                  <span class="panel-tag">LOCAL ONLY</span>
+                </div>
+                <p class="panel-intro">These options match the bot’s Heroku manifest. They stay in this tab until you review and submit the in-site deployment.</p>
+                <form id="settingsForm" novalidate>
+                  <div class="field-grid">
+                    <div class="field full-field">
+                      <label for="appName">Bot app name <span class="env-key">APP_NAME</span><span class="required-mark">*</span></label>
+                      <div class="input-wrap"><input id="appName" name="appName" type="text" placeholder="my-tesla-bot" autocomplete="off" maxlength="30" spellcheck="false" aria-describedby="appNameHelp appNameError" required /></div>
+                      <div class="field-foot"><span id="appNameHelp" class="field-help">Use 3–30 lowercase letters, numbers, or internal hyphens. Must be globally unique on Heroku.</span><span class="char-count" id="appNameCount">0 / 30</span></div>
+                      <span class="field-error" id="appNameError" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field full-field">
+                      <label for="ownerNumbers">Owner phone number(s) <span class="env-key">DEV</span><span class="required-mark">*</span></label>
+                      <input id="ownerNumbers" name="ownerNumbers" type="text" inputmode="numeric" placeholder="254712345678,14155550123" autocomplete="off" spellcheck="false" aria-describedby="ownerHelp ownerError" required />
+                      <div class="field-foot"><span id="ownerHelp" class="field-help">Country code included; digits only, no + or spaces. Separate multiple numbers with commas.</span><button class="text-action copy-action" type="button" data-copy="ownerNumbers">Copy number</button></div>
+                      <span class="field-error" id="ownerError" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field">
+                      <label for="menuType">Menu style <span class="env-key">MENU_TYPE</span></label>
+                      <div class="select-wrap"><select id="menuType" name="menuType"><option value="VIDEO" selected>Video menu</option><option value="IMAGE">Image menu</option><option value="LINK">Link menu</option></select><span class="select-caret" aria-hidden="true">⌄</span></div>
+                      <span class="field-help">Choose how the bot presents its menu.</span>
+                    </div>
+
+                    <div class="field">
+                      <label for="badWords">Bad word list <span class="env-key">BAD_WORD</span><span class="optional-mark">OPTIONAL</span></label>
+                      <input id="badWords" name="badWords" type="text" value="fuck,pussy,slut,bitch,cock,stupid" autocomplete="off" spellcheck="false" />
+                      <span class="field-help">Comma-separated. Kicking is controlled separately in the bot.</span>
+                    </div>
+
+                    <div class="field full-field session-field">
+                      <div class="session-label-row"><label for="sessionValue">WhatsApp session <span class="env-key">SESSION</span><span class="required-mark">*</span></label><span class="secret-indicator"><span class="secret-dot"></span> SENSITIVE VALUE</span></div>
+                      <div class="session-input-wrap"><textarea id="sessionValue" name="sessionValue" rows="3" placeholder="Paste the full session value from the pairing site" autocomplete="off" spellcheck="false" aria-describedby="sessionHelp sessionError" required></textarea><span class="session-mask" aria-hidden="true">••••••••</span></div>
+                      <div class="field-foot"><span id="sessionHelp" class="field-help">Staged in this tab only. It is submitted over HTTPS after admin review; clear your clipboard if you use Copy.</span><button class="text-action copy-action" type="button" data-copy="sessionValue">Copy session</button></div>
+                      <span class="field-error" id="sessionError" aria-live="polite"></span>
+                    </div>
+                  </div>
+                  <div class="form-footer"><span class="form-note"><span class="info-icon" aria-hidden="true">i</span> No account or settings are saved by this page.</span><button class="clear-button" id="clearSession" type="button">Clear session</button></div>
+                </form>
+              </section>
+
+              <section id="deployment" class="panel deploy-panel" aria-labelledby="deployment-title">
+                <div class="panel-heading">
+                  <div class="panel-title-group"><div class="panel-number">03</div><div><div class="section-kicker">IN-SITE DEPLOYMENT</div><h2 id="deployment-title">Launch with Tesla Host</h2></div></div>
+                  <span class="panel-tag panel-tag-cyan">ADMIN REVIEW</span>
+                </div>
+                <p class="panel-intro">Choose Deploy Now to carry this draft into Tesla Host's protected workspace. An admin reviews the selected repository and any chargeable resources before submitting the launch to Heroku.</p>
+                <div class="deploy-checklist">
+                  <div class="check-row"><span class="check-mark check-ready" aria-hidden="true">✓</span><span><strong>Bot settings</strong><small>App name, owner numbers, menu type, and word list.</small></span><span class="check-status" id="prefsChecklist">EDIT</span></div>
+                  <div class="check-row"><span class="check-mark check-secure" aria-hidden="true">⌑</span><span><strong>WhatsApp session</strong><small>Stays in this tab until the admin submits the reviewed deployment.</small></span><span class="check-status secure-status">PRIVATE</span></div>
+                  <div class="check-row"><span class="check-mark check-review" aria-hidden="true">!</span><span><strong>Review Heroku resources</strong><small>The Tesla-bot manifest requests Postgres Essential-0 ($5/month). A continuously running Basic dyno is up to $7/month.</small></span><span class="check-status review-status">REVIEW</span></div>
+                </div>
+                <div class="deploy-actions"><button id="deployButton" class="primary-button deploy-now" type="button" disabled><span class="button-icon" aria-hidden="true">↗</span><span>Deploy Now</span><span class="button-arrow" aria-hidden="true">→</span></button><a class="repo-secondary" href="https://github.com/ignatiusmkuu-spec/Tesla-bot" target="_blank" rel="noopener noreferrer">Review repository <span aria-hidden="true">↗</span></a></div>
+                <div id="deployMessage" class="inline-message" role="status" aria-live="polite"></div>
+                <div class="deploy-note"><span class="note-bar"></span><span>No external Heroku deploy redirect: app creation happens inside Tesla Host after admin sign-in and resource confirmation.</span></div>
+              </section>
+            </div>
+
+            <aside class="summary-column" aria-label="Deployment summary">
+              <div class="summary-card">
+                <div class="summary-top"><div><div class="section-kicker">DEPLOYMENT BRIEF</div><h2>TESLA-MD</h2></div><span class="summary-mark"><img src="/tesla-mark.svg" alt="" /></span></div>
+                <div class="summary-status"><span class="status-ring"><span></span></span><span><strong>Setup in progress</strong><small>Complete the steps to continue</small></span></div>
+                <div class="summary-divider"></div>
+                <div class="summary-detail"><span>REPOSITORY</span><a href="https://github.com/ignatiusmkuu-spec/Tesla-bot" target="_blank" rel="noopener noreferrer">Tesla-bot <span aria-hidden="true">↗</span></a></div>
+                <div class="summary-detail"><span>PLATFORM</span><strong>Heroku</strong></div>
+                <div class="summary-detail"><span>RUNTIME</span><strong>Node.js 22+</strong></div>
+                <div class="summary-detail"><span>ADD-ON</span><strong class="addon-label">Postgres <i>REVIEW</i></strong></div>
+                <div class="summary-divider"></div>
+                <div class="summary-progress-title"><span>CONFIGURATION</span><span id="completionText">0 / 4</span></div>
+                <div class="completion-bar"><span id="completionBar"></span></div>
+                <div class="summary-requirements"><div><span class="requirement-indicator" id="reqAppName"></span><span>App name</span></div><div><span class="requirement-indicator" id="reqOwner"></span><span>Owner number</span></div><div><span class="requirement-indicator" id="reqSession"></span><span>WhatsApp session</span></div><div><span class="requirement-indicator ready-indicator"></span><span>Menu preference</span></div></div>
+              <div class="summary-privacy"><span class="privacy-symbol" aria-hidden="true">⌑</span><span><strong>Private by design</strong><small>Drafts stay in this tab; the session goes to Heroku only after admin submission.</small></span></div>
+              </div>
+              <div class="support-card"><span class="support-kicker">NEED A HAND?</span><p>For setup or deployment help, contact Tesla Host support. Pair-code and QR instructions are also available online.</p><div class="support-actions"><a href="https://wa.me/254706535581" target="_blank" rel="noopener noreferrer">WhatsApp +254 706 535 581 <span aria-hidden="true">↗</span></a><a href="tel:+254706535581">Call +254 706 535 581</a><a href="https://pair-tesla-md.onrender.com/" target="_blank" rel="noopener noreferrer">Pairing site <span aria-hidden="true">↗</span></a></div></div>
+              <div class="fine-print">Tesla Host is an independent setup interface for Tesla-MD. Heroku account, app and resource terms apply.</div>
+            </aside>
+          </div>
+
+          <section id="admin" class="admin-area" aria-labelledby="admin-title">
+            <div class="admin-area-heading">
+              <div><div class="section-kicker">PROTECTED WORKSPACE</div><h2 id="admin-title">Admin control panel</h2></div>
+              <span class="panel-tag">HEROKU API · SERVER-SIDE</span>
+            </div>
+            <p class="admin-intro">Sign in to review bot repositories, approve the declared Heroku resources, and deploy every bot from inside Tesla Host. The server-only API key is never sent to this page.</p>
+
+            <section id="adminLoginCard" class="admin-panel login-panel" aria-labelledby="admin-login-title">
+              <div class="panel-heading"><div><div class="section-kicker">ADMIN ACCESS</div><h3 id="admin-login-title">Sign in to Heroku controls</h3></div><span class="admin-lock" aria-hidden="true">⌑</span></div>
+              <form id="adminLoginForm" autocomplete="on">
+                <div class="field">
+                  <label for="adminPassword">Admin password</label>
+                  <input id="adminPassword" name="password" type="password" autocomplete="current-password" required />
+                  <span class="field-help">The password is sent over HTTPS in an authorization header and stays in this tab's memory only.</span>
+                </div>
+                <div class="admin-actions"><button class="primary-button" type="submit" id="adminLoginButton">Sign in <span class="button-arrow" aria-hidden="true">→</span></button></div>
+                <div id="adminLoginMessage" class="inline-message" role="status" aria-live="polite"></div>
+              </form>
+            </section>
+
+            <section id="adminConsole" class="admin-console" hidden aria-label="Heroku bot manager">
+              <div class="admin-toolbar">
+                <div class="connection-chip"><span class="pulse-dot"></span><span id="adminConnectionLabel">Heroku account connected</span></div>
+                <div class="admin-toolbar-actions"><button id="refreshBots" class="secondary-button" type="button">Refresh bots</button><button id="adminLogout" class="clear-button" type="button">Sign out</button></div>
+              </div>
+
+              <div class="admin-columns">
+                <section class="admin-panel bots-panel" aria-labelledby="bots-title">
+                  <div class="panel-heading"><div><div class="section-kicker">ACCOUNT INVENTORY</div><h3 id="bots-title">Heroku app inventory</h3></div><span class="panel-tag">CONNECTED ACCOUNT</span></div>
+                  <p class="admin-small">Tesla Host lists app names and web links in this account. It never reads or displays their config vars.</p>
+                  <div id="botList" class="bot-list" aria-live="polite"><span class="admin-muted">Sign in to load apps.</span></div>
+                  <div id="botListMessage" class="inline-message" role="status" aria-live="polite"></div>
+                </section>
+
+                <section class="admin-panel add-bot-panel" aria-labelledby="add-bot-title">
+                  <div class="panel-heading"><div><div class="section-kicker">NEW APP SETUP</div><h3 id="add-bot-title">Add another bot</h3></div><span class="panel-number">01</span></div>
+                  <p class="admin-small">Use a public GitHub repository with a root <code>app.json</code> manifest. Private repositories aren't supported by this deployment flow.</p>
+                  <form id="repoForm" novalidate>
+                    <div class="field">
+                      <label for="repoUrl">GitHub repository</label>
+                      <input id="repoUrl" name="repoUrl" type="url" placeholder="https://github.com/owner/repository" autocomplete="url" required />
+                      <span class="field-help">A branch can be selected with <code>/tree/branch</code>. Tesla Host pins the reviewed commit before submitting it to Heroku.</span>
+                    </div>
+                    <div class="admin-actions"><button id="inspectRepoButton" class="secondary-button" type="submit">Inspect app.json</button></div>
+                  </form>
+                  <div id="repoMessage" class="inline-message" role="status" aria-live="polite"></div>
+
+                  <div id="manifestPanel" class="manifest-panel" hidden>
+                    <div class="manifest-title"><div><div class="section-kicker">MANIFEST REVIEW</div><h4 id="manifestName">Bot configuration</h4></div><a id="manifestRepoLink" href="#" target="_blank" rel="noopener noreferrer">Open repository ↗</a></div>
+                    <p id="manifestDescription" class="admin-small"></p>
+                    <div class="resource-summary">
+                      <div><strong>Declared add-ons</strong><ul id="addonList" class="resource-list"></ul></div>
+                      <div id="buildpackBlock" hidden><strong>Buildpacks</strong><ul id="buildpackList" class="resource-list"></ul></div>
+                      <div id="postdeployBlock" hidden><strong>Post-deploy command</strong><code id="postdeployCommand" class="postdeploy-code"></code></div>
+                    </div>
+                    <div id="costEstimate" class="cost-estimate" role="note"></div>
+                    <div id="manifestWarnings" class="admin-warning-list"></div>
+
+                    <div class="field bot-app-field">
+                      <label for="botAppName">Heroku app name <span class="env-key">APP_NAME</span><span class="required-mark">*</span></label>
+                      <input id="botAppName" name="botAppName" type="text" placeholder="my-bot-app" autocomplete="off" spellcheck="false" maxlength="30" required />
+                      <span class="field-help">Must be globally unique on Heroku: 3–30 lowercase letters, digits, or internal hyphens; start with a letter. This value is also used for the bot's APP_NAME when declared.</span>
+                    </div>
+                    <div id="manifestFields" class="field-grid manifest-fields"></div>
+                    <div id="generatedFields" class="generated-fields"></div>
+                    <label id="resourceConfirmLabel" class="resource-confirm" hidden>
+                      <input id="confirmResources" type="checkbox" />
+                      <span>I reviewed the repository, buildpacks, add-ons, and cost estimate. I authorize Heroku to create this app and provision the listed resources in the connected account.</span>
+                    </label>
+                    <div class="admin-actions"><button id="deployBotButton" class="primary-button deploy-now" type="button" disabled><span class="button-icon" aria-hidden="true">↗</span><span>Deploy Now</span><span class="button-arrow" aria-hidden="true">→</span></button></div>
+                    <div id="deployBotMessage" class="inline-message" role="status" aria-live="polite"></div>
+                  </div>
+
+                  <div id="setupResult" class="setup-result" hidden>
+                    <div class="section-kicker">HEROKU SETUP STATUS</div>
+                    <div class="setup-result-row"><strong id="setupAppName">Bot app</strong><span id="setupStatus" class="setup-status">PENDING</span></div>
+                    <p id="setupResultMessage" class="admin-small"></p>
+                    <a id="setupAppLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Open bot app ↗</a>
+                    <button id="checkSetupButton" class="secondary-button" type="button">Check setup status</button>
+                  </div>
+                </section>
+              </div>
+              <p class="admin-security-note"><span class="note-bar"></span><span>Admin deploy sends the session to Tesla Host over HTTPS only when you create the bot; Tesla Host forwards it to Heroku as the target app's SESSION config var and never persists or logs it. The connected Heroku API credential is never forwarded to any bot.</span></p>
+            </section>
+          </section>
+
+          <footer class="page-footer"><span>TESLA HOST <span class="footer-separator">/</span> SETUP CONSOLE</span><span>Review resources before deployment <span class="footer-signal">●</span></span></footer>
+        </div>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

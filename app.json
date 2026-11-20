@@ -1,0 +1,15 @@
+{
+  "name": "Tesla Host",
+  "description": "Protected admin console for configuring and deploying bots to Heroku.",
+  "keywords": ["tesla", "heroku", "bot", "node"],
+  "env": {
+    "HEROKU_API_KEY": {
+      "description": "Heroku Platform API credential; used only on the server for admin-approved deployments.",
+      "required": true
+    },
+    "TESLA_HOST_ADMIN_PASSWORD": {
+      "description": "Private password for the Tesla Host admin console.",
+      "required": true
+    }
+  }
+}
